@@ -1,0 +1,825 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨💖 설월여고 디지털 현미경 사진전 💖✨</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Gaegu & Jua & Noto Sans KR -->
+    <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&family=Jua&family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gyaruPink: '#ff69b4',
+                        gyaruHotPink: '#ff1493',
+                        gyaruLightPink: '#fff0f5',
+                        gyaruSoftPink: '#ffe4e9',
+                        gyaruPurple: '#e6e6fa',
+                        gyaruGold: '#ffd700',
+                    },
+                    fontFamily: {
+                        jua: ['Jua', 'sans-serif'],
+                        gaegu: ['Gaegu', 'cursive'],
+                        sans: ['Noto Sans KR', 'sans-serif'],
+                    },
+                    animation: {
+                        bounceSlow: 'bounce 2s infinite',
+                        pulseGlow: 'pulseGlow 1.5s infinite alternate',
+                        float: 'float 3s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        pulseGlow: {
+                            '0%': { boxShadow: '0 0 15px #ff69b4, 0 0 30px #ff1493' },
+                            '100%': { boxShadow: '0 0 25px #ff1493, 0 0 45px #ffd700' }
+                        },
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #fff0f5;
+            background-image: 
+                radial-gradient(#ffb6c1 15%, transparent 16%),
+                radial-gradient(#ff69b4 15%, transparent 16%);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+            font-family: 'Noto Sans KR', sans-serif;
+            overflow-x: hidden;
+            cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23ff1493'><text y='20' font-size='20'>💖</text></svg>"), auto;
+        }
+
+        /* 갸루 스타일 호피 무늬 포인트 파츠 */
+        .leopard-pattern {
+            background: radial-gradient(circle, #ffb6c1 20%, transparent 20%),
+                        radial-gradient(circle, #ff1493 20%, transparent 20%);
+            background-color: #fff;
+            background-position: 0 0, 10px 10px;
+            background-size: 20px 20px;
+        }
+
+        /* 반짝이 테두리 애니메이션 */
+        .sparkle-border {
+            border: 4px dashed #ff69b4;
+            box-shadow: 0 0 15px rgba(255, 105, 180, 0.6);
+        }
+
+        /* 마우스 클릭 시 생성되는 반짝이 스타 파티클 */
+        .sparkle-particle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkleAnim 0.8s linear forwards;
+            font-size: 20px;
+            z-index: 9999;
+        }
+
+        @keyframes sparkleAnim {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(1.5) rotate(180deg); opacity: 0.8; }
+            100% { transform: scale(0) rotate(360deg) translateY(20px); opacity: 0; }
+        }
+
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #ffe4e9;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ff69b4;
+            border-radius: 6px;
+            border: 2px solid #fff;
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-20 text-gray-800">
+
+    <!-- 클릭 시 스파클 파티클 레이어 -->
+    <div id="particle-container"></div>
+
+    <!-- 헤더 섹션 -->
+    <header class="relative pt-8 pb-6 px-4 text-center overflow-hidden">
+        <!-- 배경 장식 스티커들 -->
+        <div class="absolute top-2 left-4 text-4xl animate-bounceSlow select-none">🎀</div>
+        <div class="absolute top-4 right-6 text-4xl animate-float select-none">✨</div>
+        <div class="absolute bottom-2 left-12 text-3xl animate-float select-none" style="animation-delay: 1s;">💅</div>
+        <div class="absolute bottom-4 right-16 text-3xl animate-bounceSlow select-none" style="animation-delay: 0.5s;">💖</div>
+
+        <div class="max-w-4xl mx-auto">
+            <!-- 갸루 뱃지 타이틀 -->
+            <div class="inline-block bg-gradient-to-r from-pink-400 via-rose-300 to-pink-500 text-white font-jua text-lg md:text-xl px-6 py-2 rounded-full shadow-lg border-2 border-white mb-3 tracking-widest animate-pulse">
+                ✧💖 SEOLWOL GIRLS' HIGH SCHOOL MICROSCOPE EXHIBITION 💖✧
+            </div>
+            
+            <h1 class="font-jua text-4xl md:text-6xl text-pink-600 drop-shadow-[0_4px_4px_rgba(255,255,255,1)] tracking-wide my-2">
+                ✨ 설월여고 갸루 현미경 사진전 ✨
+            </h1>
+            
+            <p class="font-gaegu text-xl md:text-2xl text-pink-700 font-bold bg-white/70 backdrop-blur-sm inline-block px-4 py-1 rounded-2xl border-2 border-pink-300 shadow-sm mt-2">
+                "세포 하나까지 세상에서 제일 화려하게 완전 귀엽잖아!? 🔬💗✨"
+            </p>
+        </div>
+    </header>
+
+    <!-- 메인 컨테이너 -->
+    <main class="max-w-6xl mx-auto px-4">
+        
+        <!-- 네비게이션 & 검색 & 업로드 버튼 -->
+        <div class="bg-white/90 backdrop-blur-md rounded-3xl p-4 md:p-6 shadow-xl border-4 border-pink-300 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+                
+                <!-- 카테고리 필터 탭 -->
+                <div class="flex flex-wrap justify-center gap-2 font-jua">
+                    <button onclick="filterGrade('all')" class="tab-btn active bg-pink-500 text-white px-4 py-2 rounded-full border-2 border-white shadow hover:scale-105 transition transform" data-tab="all">
+                        ✨ 전체보기
+                    </button>
+                    <button onclick="filterGrade('1')" class="tab-btn bg-pink-100 text-pink-600 px-4 py-2 rounded-full border-2 border-pink-300 hover:bg-pink-200 transition transform" data-tab="1">
+                        🎀 1학년
+                    </button>
+                    <button onclick="filterGrade('2')" class="tab-btn bg-pink-100 text-pink-600 px-4 py-2 rounded-full border-2 border-pink-300 hover:bg-pink-200 transition transform" data-tab="2">
+                        💄 2학년
+                    </button>
+                    <button onclick="filterGrade('3')" class="tab-btn bg-pink-100 text-pink-600 px-4 py-2 rounded-full border-2 border-pink-300 hover:bg-pink-200 transition transform" data-tab="3">
+                        👑 3학년
+                    </button>
+                    <button onclick="filterGrade('popular')" class="tab-btn bg-yellow-100 text-yellow-700 px-4 py-2 rounded-full border-2 border-yellow-300 hover:bg-yellow-200 transition transform" data-tab="popular">
+                        🔥 인기 짱 작품
+                    </button>
+                </div>
+
+                <!-- 검색창 및 글쓰기 버튼 -->
+                <div class="flex items-center gap-2 w-full md:w-auto">
+                    <div class="relative flex-1 md:w-60">
+                        <input type="text" id="searchInput" onkeyup="handleSearch()" placeholder="제목/이름/표본 검색..." 
+                            class="w-full pl-9 pr-4 py-2 rounded-full border-2 border-pink-300 focus:outline-none focus:border-pink-500 font-gaegu text-lg text-pink-800 bg-pink-50/50">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-pink-400"></i>
+                    </div>
+
+                    <button onclick="openUploadModal()" class="bg-gradient-to-r from-pink-500 to-rose-400 text-white font-jua px-5 py-2 rounded-full border-2 border-white shadow-lg hover:from-pink-600 hover:to-rose-500 hover:scale-105 transition transform flex items-center whitespace-nowrap">
+                        <i class="fa-solid fa-plus-circle mr-2"></i> 사진 올리기 📸
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 사진 갤러리 그리드 -->
+        <div id="galleryGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            <!-- JavaScript를 통해 dynamic 로드됩니다 -->
+        </div>
+
+    </main>
+
+    <!-- 사진 올리기 / 수정 모달 -->
+    <div id="postModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="bg-gradient-to-b from-pink-50 to-white rounded-3xl border-4 border-pink-400 p-6 max-w-lg w-full shadow-2xl relative my-8">
+            <button onclick="closeUploadModal()" class="absolute top-4 right-4 text-pink-500 hover:text-pink-700 text-2xl font-bold">
+                <i class="fa-solid fa-circle-xmark"></i>
+            </button>
+
+            <h2 id="modalTitle" class="font-jua text-2xl md:text-3xl text-pink-600 text-center mb-4">
+                💖 새 현미경 사진 자랑하기 💖
+            </h2>
+
+            <form id="postForm" onsubmit="handlePostSubmit(event)" class="space-y-4 font-sans">
+                <input type="hidden" id="editPostId" value="">
+
+                <div>
+                    <label class="block font-jua text-pink-700 text-base mb-1">👑 학년 선택 & 이름</label>
+                    <div class="flex gap-2">
+                        <select id="postGrade" class="w-1/3 p-2 rounded-xl border-2 border-pink-300 focus:outline-none focus:border-pink-500 font-jua bg-white text-pink-700">
+                            <option value="1">1학년</option>
+                            <option value="2">2학년</option>
+                            <option value="3">3학년</option>
+                        </select>
+                        <input type="text" id="postAuthor" required placeholder="예: 김갸루 (1-2)" class="w-2/3 p-2 rounded-xl border-2 border-pink-300 focus:outline-none focus:border-pink-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-jua text-pink-700 text-base mb-1">✨ 작품 제목</label>
+                    <input type="text" id="postTitle" required placeholder="예: 영롱한 양파 표피세포 100배!" class="w-full p-2 rounded-xl border-2 border-pink-300 focus:outline-none focus:border-pink-500">
+                </div>
+
+                <div>
+                    <label class="block font-jua text-pink-700 text-base mb-1">🔬 배율 및 관찰 표본</label>
+                    <input type="text" id="postSpecimen" required placeholder="예: 식물 세포 / 400x 배율" class="w-full p-2 rounded-xl border-2 border-pink-300 focus:outline-none focus:border-pink-500">
+                </div>
+
+                <div>
+                    <label class="block font-jua text-pink-700 text-base mb-1">🖼️ 사진 첨부 방식</label>
+                    <div class="flex gap-2 mb-2">
+                        <button type="button" onclick="toggleImageType('file')" id="typeBtnFile" class="flex-1 py-1 font-jua rounded-lg border-2 border-pink-400 bg-pink-400 text-white">파일 직접 업로드</button>
+                        <button type="button" onclick="toggleImageType('url')" id="typeBtnUrl" class="flex-1 py-1 font-jua rounded-lg border-2 border-pink-300 bg-white text-pink-600">이미지 URL</button>
+                    </div>
+
+                    <div id="fileInputContainer">
+                        <input type="file" id="postImageFile" accept="image/*" onchange="previewFile(event)" class="w-full text-sm text-pink-700 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-jua file:bg-pink-400 file:text-white hover:file:bg-pink-500">
+                    </div>
+
+                    <div id="urlInputContainer" class="hidden">
+                        <input type="url" id="postImageUrl" placeholder="https://images.unsplash.com/..." class="w-full p-2 rounded-xl border-2 border-pink-300 focus:outline-none focus:border-pink-500 text-sm">
+                    </div>
+
+                    <!-- 이미지 미리보기 -->
+                    <div class="mt-3 text-center">
+                        <img id="imagePreview" src="" class="max-h-40 mx-auto rounded-xl border-2 border-pink-300 hidden object-cover shadow">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-jua text-pink-700 text-base mb-1">💬 상세 설명</label>
+                    <textarea id="postDesc" rows="3" required placeholder="현미경으로 보니까 너무 영롱하고 완전 예쁨...💕" class="w-full p-2 rounded-xl border-2 border-pink-300 focus:outline-none focus:border-pink-500"></textarea>
+                </div>
+
+                <div class="pt-2 flex gap-3">
+                    <button type="button" onclick="closeUploadModal()" class="w-1/2 py-3 rounded-2xl bg-gray-200 text-gray-700 font-jua text-lg hover:bg-gray-300 transition">취소</button>
+                    <button type="submit" class="w-1/2 py-3 rounded-2xl bg-gradient-to-r from-pink-500 to-rose-400 text-white font-jua text-lg hover:from-pink-600 hover:to-rose-500 shadow-md transition transform hover:scale-105">등록하기 💖</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 사진 상세보기 및 댓글 모달 -->
+    <div id="detailModal" class="fixed inset-0 bg-black/75 backdrop-blur-sm hidden flex items-center justify-center z-50 p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl border-4 border-pink-400 max-w-3xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative my-6">
+            <button onclick="closeDetailModal()" class="absolute top-4 right-4 z-10 text-white bg-pink-500/80 hover:bg-pink-600 rounded-full w-9 h-9 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div id="detailContent" class="p-6">
+                <!-- JavaScript를 통해 상세 내용 동적 삽입 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 삭제 확인 커스텀 모달 (갸루 스타일) -->
+    <div id="deleteModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm hidden flex items-center justify-center z-[60] p-4">
+        <div class="bg-white rounded-3xl border-4 border-pink-400 p-6 max-w-sm w-full text-center shadow-2xl animate-bounceSlow">
+            <div class="text-4xl mb-2">💔😭</div>
+            <h3 id="deleteModalTitle" class="font-jua text-2xl text-pink-600 mb-2">정말로 삭제할까?</h3>
+            <p id="deleteModalDesc" class="font-gaegu text-lg text-pink-400 mb-6">삭제하면 다시 복구할 수 없어...🥺</p>
+            <div class="flex gap-3">
+                <button onclick="closeDeleteModal()" class="flex-1 py-2 rounded-2xl bg-gray-200 text-gray-700 font-jua hover:bg-gray-300 transition">취소</button>
+                <button id="confirmDeleteBtn" class="flex-1 py-2 rounded-2xl bg-gradient-to-r from-rose-500 to-red-500 text-white font-jua shadow-md hover:scale-105 transition">삭제하기 🔥</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 하단 푸터 -->
+    <footer class="mt-16 text-center text-pink-600 font-gaegu text-lg pb-6">
+        <p>✨ 2026 설월여자고등학교 디지털 현미경 사진전 ✨</p>
+        <p class="text-sm text-pink-400 font-sans mt-1">Design with 💖 Y2K Gyaru Vibes | Designed for Seolwol Girls' High School Science Club</p>
+    </footer>
+
+    <script>
+        // 초기 기본 예시 데이터
+        const initialPosts = [
+            {
+                id: 1,
+                grade: "2",
+                author: "김설월 (2-3)",
+                title: "✨ 영롱함 그 자체! 양파 표피세포 ✨",
+                specimen: "양파 표피세포 (Onion Epidermis 100x)",
+                imageUrl: "https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80",
+                description: "아세토카민 용액으로 염색한 양파 표피세포입니다! 핵이 또렷하게 붉은색으로 보여서 진짜 대박 예뻐요 💖 아세토카민 색감이 인스타 감성이랑 완전 딱임!",
+                likes: 42,
+                comments: [
+                    { id: 101, author: "이갸루(2-1)", text: "우와 핵 진짜 선명해!! 대박 잘 찍었다 ✨" },
+                    { id: 102, author: "박과학(교사)", text: "염색 과정이 아주 깔끔하게 되었네요. 아주 우수한 관찰 사진입니다!" }
+                ]
+            },
+            {
+                id: 2,
+                grade: "1",
+                author: "박빛나 (1-1)",
+                title: "🎀 핑크빛 하트 닮은 식물 줄기 단면 🎀",
+                specimen: "식물 줄기 세포 절편 (Plant Stem 400x)",
+                imageUrl: "https://images.unsplash.com/photo-1530026405186-ed1f139313f8?auto=format&fit=crop&w=800&q=80",
+                description: "쌍자엽 식물 줄기 관다발을 관찰했어요! 관다발 배치 모양이 마치 귀여운 하트나 보석 같지 않나요? 400배 배율로 보니까 초현실 예술 작품 같아요 🌸",
+                likes: 38,
+                comments: [
+                    { id: 201, author: "최유정(1-4)", text: "대박 반짝거려 ㅋㅋㅋ 현미경 사진 맞음?! 💕" }
+                ]
+            },
+            {
+                id: 3,
+                grade: "3",
+                author: "최아리 (3-2)",
+                title: "💎 핏방울 속 동글동글 적혈구 월드 💎",
+                specimen: "인체 혈액 도말 표본 (Blood Cells 1000x)",
+                imageUrl: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=800&q=80",
+                description: "1000배 유침렌즈로 본 적혈구들이에요! 가운데가 쏙 들어간 도넛 모양 적혈구가옹기종기 모여있는 게 너무 귀여움 🩸✨ 생명과학 시간에 직접 만든 표본입니다!",
+                likes: 56,
+                comments: [
+                    { id: 301, author: "한채원(3-5)", text: "1000배로 보느라 수고했어! 초점 잘잡았다 👑" }
+                ]
+            }
+        ];
+
+        // 로컬스토리지 연동 또는 초기화
+        let posts = JSON.parse(localStorage.getItem('seolwol_gyaru_posts')) || initialPosts;
+        let activeTab = 'all';
+        let imageInputType = 'file';
+        let currentUploadedImageBase64 = '';
+        let pendingDeleteAction = null;
+
+        // 초기화 함수
+        window.onload = function() {
+            renderGallery();
+            setupSparkles();
+        };
+
+        // 데이터를 로컬스토리지에 저장
+        function savePosts() {
+            localStorage.setItem('seolwol_gyaru_posts', JSON.stringify(posts));
+        }
+
+        // 갤러리 카드를 화면에 출력
+        function renderGallery() {
+            const grid = document.getElementById('galleryGrid');
+            const searchKeyword = document.getElementById('searchInput').value.toLowerCase().trim();
+
+            let filtered = posts.filter(post => {
+                // 검색어 필터
+                const matchesSearch = post.title.toLowerCase().includes(searchKeyword) ||
+                                      post.author.toLowerCase().includes(searchKeyword) ||
+                                      post.specimen.toLowerCase().includes(searchKeyword);
+                
+                // 탭 필터
+                if (activeTab === 'all') return matchesSearch;
+                if (activeTab === 'popular') return matchesSearch && post.likes >= 35;
+                return matchesSearch && post.grade === activeTab;
+            });
+
+            // 인기순/최신순 정렬 (인기탭일 땐 좋아요순)
+            if (activeTab === 'popular') {
+                filtered.sort((a, b) => b.likes - a.likes);
+            } else {
+                filtered.sort((a, b) => b.id - a.id);
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-12 bg-white/70 rounded-3xl border-2 border-dashed border-pink-300">
+                        <p class="text-4xl mb-2">😭✨</p>
+                        <p class="font-jua text-xl text-pink-600">아직 등록된 현미경 사진이 없어요!</p>
+                        <p class="font-gaegu text-lg text-pink-400 mt-1">오른쪽 상단 [사진 올리기 📸] 버튼을 눌러 첫 번째 사진을 올려봐!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(post => `
+                <div class="bg-white rounded-3xl border-4 border-pink-300 overflow-hidden shadow-xl hover:shadow-2xl transition transform hover:-translate-y-2 relative flex flex-col justify-between group">
+                    
+                    <!-- 카드 상단 학년/이름 뱃지 -->
+                    <div class="p-4 pb-2 flex justify-between items-center bg-gradient-to-r from-pink-100 to-pink-50">
+                        <span class="bg-pink-500 text-white font-jua text-xs px-3 py-1 rounded-full border border-white shadow-sm">
+                            ${post.grade}학년
+                        </span>
+                        <span class="font-gaegu font-bold text-pink-700 text-lg">
+                            🎀 ${post.author}
+                        </span>
+                    </div>
+
+                    <!-- 이미지 박스 -->
+                    <div class="relative cursor-pointer overflow-hidden aspect-video bg-pink-100" onclick="openDetailModal(${post.id})">
+                        <img src="${post.imageUrl}" alt="${post.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" onerror="this.src='https://placehold.co/600x400/ffb6c1/ffffff?text=Microscope+Photo'">
+                        <div class="absolute inset-0 bg-pink-900/10 opacity-0 group-hover:opacity-100 transition flex items-center justify-center">
+                            <span class="bg-pink-500/90 text-white font-jua px-4 py-2 rounded-full border border-white shadow">
+                                🔍 자세히 보기 & 댓글
+                            </span>
+                        </div>
+                        <div class="absolute bottom-2 left-2 bg-black/60 backdrop-blur-sm text-pink-200 text-xs font-mono px-2.5 py-1 rounded-full">
+                            🔬 ${post.specimen}
+                        </div>
+                    </div>
+
+                    <!-- 카드 본문 -->
+                    <div class="p-5 flex-1 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-jua text-xl text-pink-700 mb-2 truncate cursor-pointer hover:text-pink-500" onclick="openDetailModal(${post.id})">
+                                ${post.title}
+                            </h3>
+                            <p class="font-sans text-sm text-gray-600 line-clamp-2 mb-4">
+                                ${post.description}
+                            </p>
+                        </div>
+
+                        <!-- 하단 액션 버튼 영역 -->
+                        <div class="pt-3 border-t border-pink-100 flex justify-between items-center font-jua text-sm">
+                            <button onclick="likePost(event, ${post.id})" class="flex items-center gap-1.5 text-rose-500 bg-rose-50 hover:bg-rose-100 px-3 py-1.5 rounded-full border border-rose-200 transition">
+                                <i class="fa-solid fa-heart animate-pulse"></i>
+                                <span>${post.likes}</span>
+                            </button>
+
+                            <div class="flex items-center gap-2">
+                                <button onclick="openDetailModal(${post.id})" class="text-pink-600 bg-pink-50 hover:bg-pink-100 px-3 py-1.5 rounded-full border border-pink-200 transition">
+                                    <i class="fa-solid fa-comment"></i> ${post.comments ? post.comments.length : 0}
+                                </button>
+                                <button onclick="openEditPostModal(${post.id})" class="text-gray-500 hover:text-pink-600 p-1.5" title="수정">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                                <button onclick="deletePost(${post.id})" class="text-gray-400 hover:text-red-500 p-1.5" title="삭제">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // 탭 변경
+        function filterGrade(grade) {
+            activeTab = grade;
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                if (btn.dataset.tab === grade) {
+                    btn.className = "tab-btn active bg-pink-500 text-white px-4 py-2 rounded-full border-2 border-white shadow hover:scale-105 transition transform";
+                } else {
+                    btn.className = "tab-btn bg-pink-100 text-pink-600 px-4 py-2 rounded-full border-2 border-pink-300 hover:bg-pink-200 transition transform";
+                }
+            });
+            renderGallery();
+        }
+
+        // 검색 처리
+        function handleSearch() {
+            renderGallery();
+        }
+
+        // 좋아요 카운터 증가
+        function likePost(event, id) {
+            event.stopPropagation();
+            const post = posts.find(p => p.id === id);
+            if (post) {
+                post.likes += 1;
+                savePosts();
+                renderGallery();
+                createSparkleAt(event.clientX, event.clientY);
+            }
+        }
+
+        // 모달 제어 - 업로드
+        function openUploadModal() {
+            // 이전에 작성했던 이름과 학년 정보는 유지하여 여러 개 연속 업로드가 편하도록 설정
+            const prevAuthor = document.getElementById('postAuthor').value;
+            const prevGrade = document.getElementById('postGrade').value;
+
+            document.getElementById('postForm').reset();
+            
+            if (prevAuthor) document.getElementById('postAuthor').value = prevAuthor;
+            if (prevGrade) document.getElementById('postGrade').value = prevGrade;
+
+            document.getElementById('editPostId').value = '';
+            document.getElementById('modalTitle').innerText = '💖 새 현미경 사진 자랑하기 💖';
+            document.getElementById('imagePreview').classList.add('hidden');
+            currentUploadedImageBase64 = '';
+            toggleImageType('file');
+            document.getElementById('postModal').classList.remove('hidden');
+        }
+
+        function closeUploadModal() {
+            document.getElementById('postModal').classList.add('hidden');
+        }
+
+        // 이미지 방식 토글 (파일 업로드 / URL)
+        function toggleImageType(type) {
+            imageInputType = type;
+            const btnFile = document.getElementById('typeBtnFile');
+            const btnUrl = document.getElementById('typeBtnUrl');
+            const containerFile = document.getElementById('fileInputContainer');
+            const containerUrl = document.getElementById('urlInputContainer');
+
+            if (type === 'file') {
+                btnFile.className = "flex-1 py-1 font-jua rounded-lg border-2 border-pink-400 bg-pink-400 text-white";
+                btnUrl.className = "flex-1 py-1 font-jua rounded-lg border-2 border-pink-300 bg-white text-pink-600";
+                containerFile.classList.remove('hidden');
+                containerUrl.classList.add('hidden');
+            } else {
+                btnUrl.className = "flex-1 py-1 font-jua rounded-lg border-2 border-pink-400 bg-pink-400 text-white";
+                btnFile.className = "flex-1 py-1 font-jua rounded-lg border-2 border-pink-300 bg-white text-pink-600";
+                containerUrl.classList.remove('hidden');
+                containerFile.classList.add('hidden');
+            }
+        }
+
+        // 파일 선택 시 Base64 변환 및 미리보기
+        function previewFile(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    currentUploadedImageBase64 = e.target.result;
+                    const img = document.getElementById('imagePreview');
+                    img.src = e.target.result;
+                    img.classList.remove('hidden');
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // 게시글 생성 / 수정 처리
+        function handlePostSubmit(e) {
+            e.preventDefault();
+            
+            const editId = document.getElementById('editPostId').value;
+            const grade = document.getElementById('postGrade').value;
+            const author = document.getElementById('postAuthor').value;
+            const title = document.getElementById('postTitle').value;
+            const specimen = document.getElementById('postSpecimen').value;
+            const desc = document.getElementById('postDesc').value;
+
+            let imageUrl = '';
+            if (imageInputType === 'file') {
+                imageUrl = currentUploadedImageBase64 || 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80';
+            } else {
+                imageUrl = document.getElementById('postImageUrl').value || 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&w=800&q=80';
+            }
+
+            if (editId) {
+                // 수정
+                const post = posts.find(p => p.id === parseInt(editId));
+                if (post) {
+                    post.grade = grade;
+                    post.author = author;
+                    post.title = title;
+                    post.specimen = specimen;
+                    post.description = desc;
+                    if (imageUrl) post.imageUrl = imageUrl;
+                }
+            } else {
+                // 신규 생성 (동일 인물이 고유 ID로 얼마든지 여러 게시글 생성 가능)
+                const newPost = {
+                    id: Date.now() + Math.floor(Math.random() * 1000),
+                    grade: grade,
+                    author: author,
+                    title: title,
+                    specimen: specimen,
+                    imageUrl: imageUrl,
+                    description: desc,
+                    likes: 0,
+                    comments: []
+                };
+                posts.unshift(newPost);
+            }
+
+            savePosts();
+            renderGallery();
+            closeUploadModal();
+        }
+
+        // 기존 게시물 수정 모달 열기
+        function openEditPostModal(id) {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            document.getElementById('editPostId').value = post.id;
+            document.getElementById('postGrade').value = post.grade;
+            document.getElementById('postAuthor').value = post.author;
+            document.getElementById('postTitle').value = post.title;
+            document.getElementById('postSpecimen').value = post.specimen;
+            document.getElementById('postDesc').value = post.description;
+
+            document.getElementById('modalTitle').innerText = '💖 게시물 수정하기 💖';
+
+            toggleImageType('url');
+            document.getElementById('postImageUrl').value = post.imageUrl;
+            const img = document.getElementById('imagePreview');
+            img.src = post.imageUrl;
+            img.classList.remove('hidden');
+
+            document.getElementById('postModal').classList.remove('hidden');
+        }
+
+        // 게시글 삭제 모달 띄우기
+        function deletePost(id) {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            document.getElementById('deleteModalTitle').innerText = '게시물을 삭제할까? 💔';
+            document.getElementById('deleteModalDesc').innerText = `'${post.title}' 게시물이 영구히 사라져...🥺`;
+            
+            pendingDeleteAction = () => {
+                posts = posts.filter(p => p.id !== id);
+                savePosts();
+                renderGallery();
+                closeDetailModal();
+            };
+
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        // 댓글 삭제 모달 띄우기
+        function deleteComment(postId, commentId) {
+            document.getElementById('deleteModalTitle').innerText = '댓글을 삭제할까? 💔';
+            document.getElementById('deleteModalDesc').innerText = '소중한 댓글이 지워져...🥺';
+
+            pendingDeleteAction = () => {
+                const post = posts.find(p => p.id === postId);
+                if (post) {
+                    post.comments = post.comments.filter(c => c.id !== commentId);
+                    savePosts();
+                    openDetailModal(postId);
+                    renderGallery();
+                }
+            };
+
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
+
+        // 삭제 확인 모달 닫기 및 실행
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+            pendingDeleteAction = null;
+        }
+
+        document.getElementById('confirmDeleteBtn').addEventListener('click', function() {
+            if (pendingDeleteAction) {
+                pendingDeleteAction();
+            }
+            closeDeleteModal();
+        });
+
+        // 상세보기 및 댓글 모달
+        function openDetailModal(id) {
+            const post = posts.find(p => p.id === id);
+            if (!post) return;
+
+            const detailContent = document.getElementById('detailContent');
+            detailContent.innerHTML = `
+                <div class="flex flex-col md:flex-row gap-6">
+                    <!-- 상세 이미지 -->
+                    <div class="md:w-1/2">
+                        <div class="rounded-2xl overflow-hidden border-4 border-pink-300 shadow-md">
+                            <img src="${post.imageUrl}" class="w-full h-auto object-cover" onerror="this.src='https://placehold.co/600x400/ffb6c1/ffffff?text=Microscope+Photo'">
+                        </div>
+                        <div class="mt-3 flex justify-between items-center">
+                            <span class="font-mono text-sm bg-pink-100 text-pink-700 font-bold px-3 py-1 rounded-full border border-pink-300">
+                                🔬 ${post.specimen}
+                            </span>
+                            <span class="font-jua text-sm text-pink-500">
+                                👑 ${post.grade}학년 ${post.author}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- 상세 설명 및 댓글 영역 -->
+                    <div class="md:w-1/2 flex flex-col justify-between">
+                        <div>
+                            <h2 class="font-jua text-2xl text-pink-700 mb-3">${post.title}</h2>
+                            <p class="font-sans text-gray-700 leading-relaxed bg-pink-50/60 p-4 rounded-2xl border border-pink-200 mb-4 whitespace-pre-line text-sm">
+                                ${post.description}
+                            </p>
+                        </div>
+
+                        <!-- 댓글 세션 -->
+                        <div class="border-t-2 border-dashed border-pink-200 pt-4 mt-2">
+                            <h3 class="font-jua text-lg text-pink-600 mb-2 flex items-center gap-2">
+                                💬 댓글 목록 <span class="text-xs bg-pink-400 text-white px-2 py-0.5 rounded-full">${post.comments ? post.comments.length : 0}</span>
+                            </h3>
+
+                            <!-- 댓글 작성 폼 -->
+                            <div class="flex gap-2 mb-4">
+                                <input type="text" id="commentAuthor" placeholder="이름" class="w-1/3 p-2 rounded-xl border border-pink-300 text-xs font-jua">
+                                <input type="text" id="commentText" placeholder="예쁜 댓글을 남겨줘! 💖" class="w-2/3 p-2 rounded-xl border border-pink-300 text-xs font-sans">
+                                <button onclick="addComment(${post.id})" class="bg-pink-500 hover:bg-pink-600 text-white font-jua px-3 py-1.5 rounded-xl text-xs whitespace-nowrap shadow">
+                                    등록
+                                </button>
+                            </div>
+
+                            <!-- 댓글 리스트 -->
+                            <div class="space-y-2 max-h-48 overflow-y-auto pr-1" id="commentsList">
+                                ${(post.comments && post.comments.length > 0) ? post.comments.map(c => `
+                                    <div class="bg-pink-50 p-2.5 rounded-xl border border-pink-200 flex justify-between items-start text-xs group">
+                                        <div class="flex-1">
+                                            <span class="font-jua text-pink-700 mr-2">🎀 ${c.author}</span>
+                                            <span class="text-gray-700 font-sans" id="commentText_${c.id}">${c.text}</span>
+                                        </div>
+                                        <div class="flex gap-1 ml-2 opacity-80 group-hover:opacity-100">
+                                            <button onclick="editComment(${post.id}, ${c.id})" class="text-gray-400 hover:text-pink-600">
+                                                <i class="fa-solid fa-pen"></i>
+                                            </button>
+                                            <button onclick="deleteComment(${post.id}, ${c.id})" class="text-gray-400 hover:text-red-500">
+                                                <i class="fa-solid fa-xmark"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                me`).join('') : '<p class="text-xs text-pink-400 font-gaegu text-center py-2">첫 번째 댓글을 달아봐! ✨</p>'}
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('detailModal').classList.remove('hidden');
+        }
+
+        function closeDetailModal() {
+            document.getElementById('detailModal').classList.add('hidden');
+        }
+
+        // 댓글 추가
+        function addComment(postId) {
+            const authorInput = document.getElementById('commentAuthor');
+            const textInput = document.getElementById('commentText');
+
+            const author = authorInput.value.trim() || '익명 갸루';
+            const text = textInput.value.trim();
+
+            if (!text) {
+                textInput.focus();
+                textInput.classList.add('border-rose-500');
+                return;
+            }
+            textInput.classList.remove('border-rose-500');
+
+            const post = posts.find(p => p.id === postId);
+            if (post) {
+                if (!post.comments) post.comments = [];
+                post.comments.push({
+                    id: Date.now(),
+                    author: author,
+                    text: text
+                });
+                savePosts();
+                openDetailModal(postId); // 재갱신
+                renderGallery();
+            }
+        }
+
+        // 댓글 수정
+        function editComment(postId, commentId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+            const comment = post.comments.find(c => c.id === commentId);
+            if (!comment) return;
+
+            const newText = prompt("댓글 내용을 수정할까?", comment.text);
+            if (newText !== null && newText.trim() !== "") {
+                comment.text = newText.trim();
+                savePosts();
+                openDetailModal(postId);
+            }
+        }
+
+        // 댓글 삭제
+        function deleteComment(postId, commentId) {
+            const post = posts.find(p => p.id === postId);
+            if (!post) return;
+
+            post.comments = post.comments.filter(c => c.id !== commentId);
+            savePosts();
+            openDetailModal(postId);
+            renderGallery();
+        }
+
+        // 마우스 클릭 시 귀여운 반짝이 스타 파티클 생성
+        function setupSparkles() {
+            window.addEventListener('click', function(e) {
+                createSparkleAt(e.clientX, e.clientY);
+            });
+        }
+
+        function createSparkleAt(x, y) {
+            const container = document.getElementById('particle-container');
+            const icons = ['✨', '💖', '🎀', '⭐', '💎', '💅'];
+            
+            for (let i = 0; i < 3; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'sparkle-particle';
+                particle.innerText = icons[Math.floor(Math.random() * icons.length)];
+                
+                // 위치 오프셋
+                const offsetX = (Math.random() - 0.5) * 40;
+                const offsetY = (Math.random() - 0.5) * 40;
+                
+                particle.style.left = `${x + offsetX}px`;
+                particle.style.top = `${y + offsetY}px`;
+                
+                container.appendChild(particle);
+                
+                setTimeout(() => {
+                    particle.remove();
+                }, 800);
+            }
+        }
+    </script>
+</body>
+</html>
